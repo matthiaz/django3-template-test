@@ -54,7 +54,7 @@ hooks:
   # assembling the codebase.
   build: |
     pipenv install --system --deploy
-    pip install git+git://github.com/ludoge/template-builder.git@mr/python-packaging#egg=template-builder.
+    pip install git+git://github.com/ludoge/template-builder.git@mr/python-packaging#egg=template-builder
     mkdir logs
     python manage.py collectstatic
     rm -rf logs
