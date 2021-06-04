@@ -60,3 +60,10 @@ hooks:
     rm -rf logs
   deploy: |
     python manage.py migrate
+
+# Auto-update source operation
+source:
+  operations:
+    update:
+      command: |
+        auto-update django3
