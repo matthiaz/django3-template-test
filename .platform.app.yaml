@@ -57,7 +57,6 @@ hooks:
     mkdir logs
     python manage.py collectstatic
     rm -rf logs
-    curl -sS https://platform.sh/cli/installer | php
   deploy: |
     python manage.py migrate
 
@@ -66,5 +65,6 @@ source:
   operations:
     update:
       command: |
+        curl -sS https://platform.sh/cli/installer | php
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
