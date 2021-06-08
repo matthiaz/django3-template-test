@@ -54,7 +54,6 @@ hooks:
   # assembling the codebase.
   build: |
     pipenv install --system --deploy
-    pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
     mkdir logs
     python manage.py collectstatic
     rm -rf logs
@@ -66,4 +65,5 @@ source:
   operations:
     update:
       command: |
+        pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
