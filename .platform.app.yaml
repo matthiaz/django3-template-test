@@ -65,12 +65,6 @@ source:
   operations:
     update:
       command: |
-        curl -sS https://platform.sh/cli/installer | php
-        source ~/.environment
-        platform
-        ls -la ~
-        ~/.platformsh/bin/platform
-        echo $PATH
-        export PATH=~/.platformsh/bin:$PATH
+        git remote --verbose
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
