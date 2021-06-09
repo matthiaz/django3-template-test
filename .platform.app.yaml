@@ -68,5 +68,6 @@ source:
         curl -sS https://platform.sh/cli/installer | php
         source ~/.environment
         platform
+        ls -la ~
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
