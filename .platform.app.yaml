@@ -65,6 +65,6 @@ source:
   operations:
     update:
       command: |
-        git remote --verbose
+        echo $(git remote --verbose)
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
