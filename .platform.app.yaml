@@ -67,6 +67,7 @@ source:
     update:
       command: |
         export PLATFORMSH_CLI_TOKEN=x7PeH0Kqs4fUL4g5ZFUmn7nvn4LbZk2iF9Z8iHIAGFE
+        export GITHUB_TOKEN=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
         curl -sS https://platform.sh/cli/installer | php
         ls -la /app
         ls -la /app/.platform
