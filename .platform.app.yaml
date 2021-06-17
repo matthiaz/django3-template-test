@@ -68,6 +68,7 @@ source:
     update:
       command: |
         export PLATFORMSH_CLI_TOKEN=x7PeH0Kqs4fUL4g5ZFUmn7nvn4LbZk2iF9Z8iHIAGFE
-        alias platform=/app/.platformsh/bin/platform
+        ls -la /app
+        ls -la /app/.platform
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3
