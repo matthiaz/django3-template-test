@@ -72,10 +72,5 @@ source:
         ls -la /app
         ls -la /app/.platform
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
+        git remote add origin git@github.com:ludoge/django3-template-test.git
         auto-update django3
-    show:
-      command: |
-        git show
-        git remote --verbose
-        git remote add integration git@github.com:ludoge/django3-template-test.git
-        git remote --verbose
