@@ -68,5 +68,6 @@ source:
       command: |
         pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
         auto-update django3 update
+        git diff
         git add .
-        git commit -m "auto-update"
+        git commit -m "auto-update" --allow-empty
