@@ -71,3 +71,4 @@ source:
         git diff
         git add .
         git commit -m "auto-update" --allow-empty
+        auto-update django3 pull_request
