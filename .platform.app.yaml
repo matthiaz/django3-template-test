@@ -57,6 +57,8 @@ hooks:
     mkdir logs
     python manage.py collectstatic
     rm -rf logs
+    curl -fsS https://platform.sh/cli/installer | php
+    pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
 
   deploy: |
     python manage.py migrate
@@ -71,3 +73,17 @@ source:
         auto-update django3 update
         git add .
         git commit -m "auto-update" --allow-empty
+
+crons:
+  update:
+    spec: '0 * * * *'
+    cmd: |
+      echo "BEGINNING OF CRON"
+      platform environment:branch update --force;
+      sleep 300
+      platform environment:activate update --yes;
+      platform source-operation:run update --environment update;
+      auto-update django3 pull_request;
+      auto-update django3 test;
+      auto-update django3 merge_pull_request;
+      git checkout master;
