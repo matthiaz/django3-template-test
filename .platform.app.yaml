@@ -79,11 +79,14 @@ crons:
     spec: '0 * * * *'
     cmd: |
       echo "BEGINNING OF CRON"
+      echo "BRANCHING ENVIRONMENT"
       platform environment:branch update --force;
       sleep 300
+      echo "ACTIVATING ENVIRONMENT"
       platform environment:activate update --yes;
+      echo "UPDATING ENVIRONMENT"
       platform source-operation:run update --environment update;
+      echo "PULL REQUEST"
       auto-update django3 pull_request;
       auto-update django3 test;
       auto-update django3 merge_pull_request;
-      git checkout master;
