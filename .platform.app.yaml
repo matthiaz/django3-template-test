@@ -80,7 +80,7 @@ crons:
     cmd: |
       echo "BEGINNING OF CRON"
       echo "BRANCHING ENVIRONMENT"
-      platform environment:branch update --force;
+      platform environment:branch update --force --no-clone-parent;
       sleep 300
       echo "ACTIVATING ENVIRONMENT"
       platform environment:activate update --yes;
