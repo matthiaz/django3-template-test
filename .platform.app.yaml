@@ -78,6 +78,8 @@ crons:
   update:
     spec: '0 * * * *'
     cmd: |
+      env;
+      if [ $PLATFORM_BRANCH = "master" ]; then
       echo "BEGINNING OF CRON"
       echo "BRANCHING ENVIRONMENT"
       master_sha=$(platform environment:info --environment master head_commit)
@@ -92,3 +94,4 @@ crons:
       auto-update django3 pull_request;
       auto-update django3 test;
       auto-update django3 merge_pull_request;
+      fi;
