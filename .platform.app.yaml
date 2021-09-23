@@ -83,7 +83,7 @@ crons:
       echo "BEGINNING OF CRON"
       echo "BRANCHING ENVIRONMENT"
       master_sha=$(platform environment:info --environment master head_commit)
-      curl -XPOST -d "{\"ref\": \"refs/heads/update\", \"sha\": \"$master_sha\"}" "https://api.github.com/repos/ludoge/django3-template-test/git/refs" -H "Authorization: token $GITHUB_TOKEN"
+      auto-update django3 reset_update_branch;
       sleep 300
       echo "ACTIVATING ENVIRONMENT"
       platform environment:activate update --yes;
