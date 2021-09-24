@@ -78,6 +78,7 @@ crons:
   update:
     spec: '0 * * * *'
     cmd: |
+      pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
       env;
       if [ $PLATFORM_BRANCH = "master" ]; then
       echo "BEGINNING OF CRON"
