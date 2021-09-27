@@ -74,24 +74,18 @@ source:
         git add .
         git commit -m "auto-update" --allow-empty
 
+
+# Auto-update cron job
 crons:
   update:
     spec: '0 * * * *'
     cmd: |
-      pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
-      env;
       if [ $PLATFORM_BRANCH = "master" ]; then
-      echo "BEGINNING OF CRON"
-      echo "BRANCHING ENVIRONMENT"
-      master_sha=$(platform environment:info --environment master head_commit)
       auto-update django3 reset_update_branch;
       sleep 300
-      echo "ACTIVATING ENVIRONMENT"
       platform environment:activate update --yes;
-      echo "UPDATING ENVIRONMENT"
       platform source-operation:run update --environment update;
       sleep 300
-      echo "PULL REQUEST"
       auto-update django3 pull_request;
       auto-update django3 test;
       auto-update django3 merge_pull_request;
