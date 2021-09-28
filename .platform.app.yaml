@@ -58,7 +58,7 @@ hooks:
     python manage.py collectstatic
     rm -rf logs
     curl -fsS https://platform.sh/cli/installer | php
-    pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
+    pip3 install git+git://github.com/matthiaz/template-builder.git@mr/matthias/building-on-top-of-ludo-work#egg=template-builder
 
   deploy: |
     python manage.py migrate
@@ -66,27 +66,20 @@ hooks:
 # Auto-update source operation
 source:
   operations:
-    update:
+    platform_update_dependencies:
       command: |
         curl -fsS https://platform.sh/cli/installer | php
-        pip3 install git+git://github.com/ludoge/template-builder.git@mr/python_packaging#egg=template-builder
+        pip3 install git+git://github.com/matthiaz/template-builder.git@mr/matthias/building-on-top-of-ludo-work#egg=template-builder
         auto-update django3 update
+        date > last_updated_on
         git add .
         git commit -m "auto-update" --allow-empty
-
 
 # Auto-update cron job
 crons:
   update:
-    spec: '0 * * * *'
+    spec: '* * * * *'
     cmd: |
       if [ $PLATFORM_BRANCH = "master" ]; then
-      auto-update django3 reset_update_branch;
-      sleep 300
-      platform environment:activate update --yes;
-      platform source-operation:run update --environment update;
-      sleep 300
-      auto-update django3 pull_request;
-      auto-update django3 test;
-      auto-update django3 merge_pull_request;
+          auto-update django3 trigger_update_dependencies;
       fi;
