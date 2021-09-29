@@ -26,7 +26,7 @@ SECRET_KEY = '5^#15wdl(qll2ue&&(-1ixwalo7%td1a(&x7abp(roabe_mk7w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TEST_FEEL_FREE_TO_REMOVE = 17
+TEST_FEEL_FREE_TO_REMOVE = 67
 ALLOWED_HOSTS = ['*']
 
 

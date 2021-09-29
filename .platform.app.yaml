@@ -57,9 +57,8 @@ hooks:
     mkdir logs
     python manage.py collectstatic
     rm -rf logs
-    curl -fsS https://platform.sh/cli/installer | php
     pip3 install git+git://github.com/matthiaz/template-builder.git@mr/matthias/building-on-top-of-ludo-work#egg=template-builder
-
+    auto-update platform install_cli
   deploy: |
     python manage.py migrate
 
@@ -68,7 +67,6 @@ source:
   operations:
     platform_update_dependencies:
       command: |
-        curl -fsS https://platform.sh/cli/installer | php
         pip3 install git+git://github.com/matthiaz/template-builder.git@mr/matthias/building-on-top-of-ludo-work#egg=template-builder
         auto-update django3 update
         date > last_updated_on
@@ -78,8 +76,8 @@ source:
 # Auto-update cron job
 crons:
   update:
-    spec: '* * * * *'
+    spec: '0 0 * * *'
     cmd: |
-      if [ $PLATFORM_BRANCH = "master" ]; then
+      if [ $PLATFORM_ENVIRONMENT_TYPE = production ]; then
           auto-update django3 trigger_update_dependencies;
       fi;
