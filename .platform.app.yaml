@@ -73,10 +73,12 @@ source:
         git add .
         git commit -m "auto-update" --allow-empty
 
+timezone: "Europe/Paris" # Change this to your timezone https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
 # Auto-update cron job
 crons:
   update:
-    spec: '0 0 * * *'
+    spec: '0 3 * * *' # update in the middle of the night
     cmd: |
       if [ $PLATFORM_ENVIRONMENT_TYPE = production ]; then
           auto-update django3 trigger_update_dependencies;
