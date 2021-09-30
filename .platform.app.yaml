@@ -78,7 +78,8 @@ timezone: "Europe/Paris" # Change this to your timezone https://en.wikipedia.org
 # Auto-update cron job
 crons:
   update:
-    spec: '0 3 * * *' # update in the middle of the night
+    #spec: '0 3 * * *' # update in the middle of the night
+    spec: '* * * * *' # for testing
     cmd: |
       if [ $PLATFORM_ENVIRONMENT_TYPE = production ]; then
           auto-update django3 trigger_update_dependencies;
