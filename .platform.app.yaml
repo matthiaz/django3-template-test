@@ -58,7 +58,7 @@ hooks:
     python manage.py collectstatic
     rm -rf logs
     pip3 install git+git://github.com/matthiaz/template-builder.git@mr/matthias/building-on-top-of-ludo-work#egg=template-builder
-    auto-update platform install_cli
+    auto-update django3 install_cli
   deploy: |
     python manage.py migrate
 
@@ -78,7 +78,7 @@ timezone: "Europe/Paris" # Change this to your timezone https://en.wikipedia.org
 # Auto-update cron job
 crons:
   update:
-    spec: '0 3 * * *' # update in the middle of the night
+    spec: '* 3 * * *' # run every night
     cmd: |
       if [ $PLATFORM_ENVIRONMENT_TYPE = production ]; then
           auto-update django3 trigger_update_dependencies;
